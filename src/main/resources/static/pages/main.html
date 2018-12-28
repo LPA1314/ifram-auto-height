@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<style>
+    body{margin:0; padding:0; }
+</style>
+
+<script>
+    function  SetWinHeight(obj)
+
+    {
+        console.log('inner set height   ');
+        var win=obj;
+
+        if(document.getElementById)
+
+        {
+
+            if(win && !window.opera)
+
+            {
+
+                if(win.contentDocument && win.contentDocument.body.offsetHeight)
+
+                {
+
+                    win.height=win.contentDocument.body.offsetHeight;
+
+                }
+
+                else if(win.Document && win.Document.body.scrollHeight)
+
+                {
+
+                    win.height=win.Document.body.scrollHeight;
+
+                }
+
+            }
+
+        }
+        var minHeight=window.screen.availHeight -120;
+        console.log('minHeight==',minHeight);
+        if(win.height<minHeight){
+            win.height=minHeight;
+        }
+
+    }
+    function SetIframeHeight(height)
+
+    {
+        var minHeight=window.screen.availHeight-120;
+        var iframeHeight=height+15;
+        if(iframeHeight<minHeight){
+            iframeHeight=minHeight;
+        }
+        console.log('===iframeHeight',iframeHeight);
+        document.getElementById("external-frame").height=iframeHeight;
+
+    }
+</script>
+<body>
+<div>
+    <div style="float: left; width:20%;">
+        <ul>
+            <li>
+                <a target="/frame1" class="href">frame1</a>
+            </li>
+            <br>
+            <li>
+                <a target="/frame2"  class="href">frame2</a>
+            </li>
+        </ul>
+    </div>
+    <div style="float: left; width:80%;">
+        <iframe
+                frameborder="0"
+                scrolling="no"
+                width="100%"
+                id="external-frame"
+                onload="SetWinHeight(this)">
+
+        </iframe>
+    </div>
+</div>
+</body>
+
+
+<script>
+    $(".href").click(function () {
+        console.log('click hef');
+        var href = $(this).attr('target')
+        $('#external-frame').attr('src', href);
+        SetIframeHeight(document.body.offsetHeight);
+    })
+</script>
+</html>
