@@ -51,7 +51,6 @@
 
     }
     function SetIframeHeight(height)
-
     {
         var minHeight=window.screen.availHeight-120;
         var iframeHeight=height+15;
@@ -60,8 +59,11 @@
         }
         console.log('===iframeHeight',iframeHeight);
         document.getElementById("external-frame").height=iframeHeight;
-
     }
+    setInterval(function(){
+        console.log('inner setTime');
+        SetWinHeight($('external-frame'));
+    }, 200);
 </script>
 <body>
 <div>

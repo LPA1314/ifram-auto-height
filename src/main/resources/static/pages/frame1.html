@@ -6,6 +6,7 @@
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 </head>
 <body>
+<button id="show-div">按钮</button>
 <div class="span12"><h1>Demo</h1>
 
     <p>WEB前端研发工程师，在国内算是一个朝阳职业，这个领域没有学校的正规教育，大多数人都是靠自己自学成才。本文主要介绍自己从事web开发以来（从大二至今）看过的书籍和自己的成长过程，目的是给想了解JavaScript或者是刚接触JavaScript的朋友，介绍如何通过循序渐进的看书来学习javascript。</p>
@@ -75,7 +76,14 @@
     <p>最后，谢谢大家，祝大家工作愉快。</p></div>
 </body>
 <script>
+    $("#show-div").click(function () {
+        console.log('click button');
+        console.log('==',$('.span12').attr('display'));
+        console.log('style==',$('.span12').css('display'));
+        $('.span12').css('display','none');
+        console.log('style==',$('.span12').css('display'));
 
+    })
     console.log(111);
 </script>
 </html>
